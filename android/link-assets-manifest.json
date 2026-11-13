@@ -1,0 +1,73 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Poppins-Bold.ttf",
+      "sha1": "875cf0cecd647bcf22e79d633d868c1b1ec98dfa"
+    },
+    {
+      "path": "assets/images/0.png",
+      "sha1": "75ba3b0e1399dfdb2e6e329d16ecc24813dc7163"
+    },
+    {
+      "path": "assets/images/1.png",
+      "sha1": "75ba3b0e1399dfdb2e6e329d16ecc24813dc7163"
+    },
+    {
+      "path": "assets/images/10.png",
+      "sha1": "9c4cb773e983719a9fad9db9ee37adc63a486cbe"
+    },
+    {
+      "path": "assets/images/11.png",
+      "sha1": "5ac2689098de1f2d6829371ce8ec309b7f0994f3"
+    },
+    {
+      "path": "assets/images/12.png",
+      "sha1": "64900172464a485fd34011fb4b235312dd20b8a0"
+    },
+    {
+      "path": "assets/images/13.png",
+      "sha1": "f58a4ee249115d8b5ac64781eea289f8c2991f92"
+    },
+    {
+      "path": "assets/images/14.png",
+      "sha1": "9cf3b09552ece1662a0984a4aac9f2bfb0f58854"
+    },
+    {
+      "path": "assets/images/15.png",
+      "sha1": "cbc66f0676240f03d9b4f9508276803241d62565"
+    },
+    {
+      "path": "assets/images/2.png",
+      "sha1": "cbab838e378a4cfd4f234c1ce9af905c82e7b5dd"
+    },
+    {
+      "path": "assets/images/3.png",
+      "sha1": "1f69b77704db422867317d83f136b0d601ad804e"
+    },
+    {
+      "path": "assets/images/4.png",
+      "sha1": "31c45a1ce0e97913391bf33e5cd61da41f03d9c3"
+    },
+    {
+      "path": "assets/images/5.png",
+      "sha1": "e5b629d77e959d8bb5091a0e780cb142087ef249"
+    },
+    {
+      "path": "assets/images/6.png",
+      "sha1": "8a5eb7fe91dfc5b63f9858da65b7a710a6f70735"
+    },
+    {
+      "path": "assets/images/7.png",
+      "sha1": "e277d1c53d2d5ea2a73aba2fe28a0d0534a94a72"
+    },
+    {
+      "path": "assets/images/8.png",
+      "sha1": "0e14c0b7ec010e17812f8c2743dabb3d9a11946a"
+    },
+    {
+      "path": "assets/images/9.png",
+      "sha1": "a3f18c7cc89a0e4d7068785b6a1d0cda622ff08f"
+    }
+  ]
+}

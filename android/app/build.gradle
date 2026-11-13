@@ -1,6 +1,21 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: 'com.google.gms.google-services' //new version
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'stringfog'
+
+// Native string fog only (DEX). JS/Hermes is unchanged.
+// fogPackages must stay on the host package — applyHostFragment rewrites it.
+stringfog {
+    // AES-128-ECB via buildSrc: harder to reverse than XOR. Each string gets its
+    // own random key injected by the plugin, so ECB block-reuse is not a concern.
+    implementation 'com.kFjQzLm.fog.StringFogAesImpl'
+    packageName "com.kFjQzLm.VpRnTx"
+    enable true
+    fogPackages = ["com.kFjQzLm.VpRnTx"]
+}
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -57,20 +72,21 @@ react {
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
-def enableProguardInReleaseBuilds = false
-
+// rn-obfuscator-begin
+def enableProguardInReleaseBuilds = true
+// rn-obfuscator-end
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
  *
  * For example, to use the international variant, you can use:
- * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
+ * `def jscFlavor = io.github.react-native-community:jsc-android-intl:2026004.+`
  *
  * The international variant includes ICU i18n library and necessary data
  * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
  * give correct results when using with locales other than en-US. Note that
  * this variant is about 6MiB larger per architecture than default.
  */
-def jscFlavor = 'org.webkit:android-jsc:+'
+def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 def hermesEnabled = project.hasProperty("hermesEnabled") ? project.hermesEnabled.toBoolean() : true
 // Expose Hermes flag for libraries (e.g. react-native-worklets).
@@ -81,7 +97,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.Haxkizo8.Zigzek"
+    namespace "com.kFjQzLm.VpRnTx"
     defaultConfig {
         applicationId "com.Haxkizo8.Zigzek"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -89,18 +105,10 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    // Load release keystore config from one of two sources (in priority):
-    //   1. Codemagic / CI: MYAPP_RELEASE_STORE_FILE passed as -P or env var
-    //   2. Local dev: AndroidWorkspace/keystore/release.properties (generated
-    //      once by scripts/ensure-keystore.sh)
-    def releaseKeystoreProps = new Properties()
-    def localKeystoreProps = rootProject.file("../../../keystore/release.properties")
-    if (localKeystoreProps.exists()) {
-        localKeystoreProps.withInputStream { releaseKeystoreProps.load(it) }
-    }
-    def hasReleaseSigning = project.hasProperty('MYAPP_RELEASE_STORE_FILE') ||
-                            releaseKeystoreProps.getProperty('MYAPP_RELEASE_STORE_FILE') != null
-
+    compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+}
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -114,11 +122,6 @@ android {
                 storePassword MYAPP_RELEASE_STORE_PASSWORD
                 keyAlias MYAPP_RELEASE_KEY_ALIAS
                 keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            } else if (releaseKeystoreProps.getProperty('MYAPP_RELEASE_STORE_FILE') != null) {
-                storeFile file(releaseKeystoreProps.getProperty('MYAPP_RELEASE_STORE_FILE'))
-                storePassword releaseKeystoreProps.getProperty('MYAPP_RELEASE_STORE_PASSWORD')
-                keyAlias releaseKeystoreProps.getProperty('MYAPP_RELEASE_KEY_ALIAS')
-                keyPassword releaseKeystoreProps.getProperty('MYAPP_RELEASE_KEY_PASSWORD')
             }
         }
     }
@@ -127,20 +130,74 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    aaptOptions {
+    // Files with these extensions are stored in the APK uncompressed
+    // noCompress "png"
+    // If you also want webp/jpg without recompression:
+    // noCompress "png", "webp", "jpg", "jpeg"
+    cruncherEnabled true  // disables PNG crunch recompression
+  }
+
+    packaging {
+        pickFirst 'lib/arm64-v8a/libworklets.so'
+        pickFirst 'lib/armeabi-v7a/libworklets.so'
+        pickFirst 'lib/x86/libworklets.so'
+        pickFirst 'lib/x86_64/libworklets.so'
+    }
 }
 
 dependencies {
-    // The version of react-native is set by the React Native Gradle Plugin
+    // React Native core
     implementation("com.facebook.react:react-android")
+    implementation platform("com.google.firebase:firebase-bom:34.10.0")
+    implementation "com.google.firebase:firebase-messaging"
 
-    if (hermesEnabled.toBoolean()) {
+//new
+    implementation ('com.google.android.gms:play-services-appset:16.1.0')
+    implementation(platform("com.google.firebase:firebase-bom:34.10.0"))
+
+    // WebKit dependency for Payment Request API
+    implementation ('androidx.webkit:webkit:1.14.0')
+    // AndroidX Activity dependency for ComponentActivity
+    implementation ('androidx.activity:activity:1.8.2')
+    // AndroidX Core dependency for Context and other base classes
+    implementation ('androidx.core:core:1.12.0')
+    // AndroidX AppCompat dependency for Activity base classes
+    implementation ('androidx.appcompat:appcompat:1.6.1')
+    // Fragment dependency for Activity compatibility
+    implementation ('androidx.fragment:fragment:1.6.2')
+    // Lifecycle dependencies
+    implementation ('androidx.lifecycle:lifecycle-runtime:2.7.0')
+    implementation ('androidx.lifecycle:lifecycle-common:2.7.0')
+    
+    // Google Play Services for Advertising ID and App Set ID
+    implementation ('com.google.android.gms:play-services-ads-identifier:18.0.1')
+    implementation 'com.google.android.play:integrity:1.4.0'
+
+    implementation 'com.parse.bolts:bolts-tasks:1.4.0'
+    implementation 'com.github.megatronking.stringfog:xor:5.0.0' // provides Base64 used by generated StringFog.java
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
+//new
+
+    // net-stack-begin
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.squareup.moshi:moshi:1.12.0'
+    // net-stack-end
+
+    if (hermesEnabled) {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
 }
+
+// rn-obfuscator-strings-begin
+// Helper EncryptMain off — StringFog covers native literals. Do not run both.
+// rn-obfuscator-strings-end

@@ -1,59 +1,69 @@
 {
   "assets": [
     {
+      "name": "icon_1024",
+      "type": "icon",
+      "prompt": "App icon, one single glossy 3D golden jester mask with two bells, centered, filling the frame, dark crimson radial gradient background, polished gold with crimson under-rim, crisp edges, no text"
+    },
+    {
+      "name": "bg_loader",
+      "type": "bg",
+      "prompt": "Vertical 9:16 mobile game loader background, closed deep crimson velvet theatre curtain with gold trim, dim moody stage light, heavy fabric folds, cinematic, no text, no UI elements"
+    },
+    {
+      "name": "bg_menu",
+      "type": "bg",
+      "prompt": "Vertical 9:16 mobile game menu background, parted crimson velvet curtains revealing a gilded empty stage, warm gold light, violet shadows in the wings, vibrant 3D render, no text, no UI elements"
+    },
+    {
       "name": "bg_game",
       "type": "bg",
-      "prompt": "Codex-generated bg for ArcticQuestFishing"
+      "prompt": "Vertical 9:16 mobile game background, soft blurred crimson velvet backdrop with purple shadow, very low contrast for UI overlay, no text, no UI elements"
     },
     {
-      "name": "button_rect",
-      "type": "button",
-      "prompt": "Codex-generated button for ArcticQuestFishing"
-    },
-    {
-      "name": "button_round",
-      "type": "button",
-      "prompt": "Codex-generated button for ArcticQuestFishing"
-    },
-    {
-      "name": "icon_home",
+      "name": "sprite_joker_mask",
       "type": "sprite",
-      "prompt": "Codex-generated sprite for ArcticQuestFishing"
+      "prompt": "One single glossy 3D golden jester mask with two bells, centered icon, glossy 3D render, isolated on plain white, no other objects"
     },
     {
-      "name": "icon_pause",
+      "name": "sprite_sym_spade",
       "type": "sprite",
-      "prompt": "Codex-generated sprite for ArcticQuestFishing"
+      "prompt": "One single glossy 3D gold and crimson spade card symbol, centered icon, glossy 3D render, isolated on plain white, no other objects"
     },
     {
-      "name": "logo",
-      "type": "icon",
-      "prompt": "Codex-generated icon for ArcticQuestFishing"
-    },
-    {
-      "name": "sprite_1",
+      "name": "sprite_sym_heart",
       "type": "sprite",
-      "prompt": "Codex-generated sprite for ArcticQuestFishing"
+      "prompt": "One single glossy 3D crimson heart card symbol with a gold rim, centered icon, glossy 3D render, isolated on plain white, no other objects"
     },
     {
-      "name": "sprite_2",
+      "name": "sprite_sym_diamond",
       "type": "sprite",
-      "prompt": "Codex-generated sprite for ArcticQuestFishing"
+      "prompt": "One single glossy 3D violet diamond card symbol with a gold rim, centered icon, glossy 3D render, isolated on plain white, no other objects"
     },
     {
-      "name": "sprite_3",
+      "name": "sprite_sym_crown",
       "type": "sprite",
-      "prompt": "Codex-generated sprite for ArcticQuestFishing"
+      "prompt": "One single glossy 3D golden royal crown with red velvet, centered icon, glossy 3D render, isolated on plain white, no other objects"
     },
     {
-      "name": "sprite_4",
+      "name": "sprite_sym_mask",
       "type": "sprite",
-      "prompt": "Codex-generated sprite for ArcticQuestFishing"
+      "prompt": "One single glossy 3D purple theatre comedy mask, centered icon, glossy 3D render, isolated on plain white, no other objects"
     },
     {
-      "name": "sprite_5",
+      "name": "sprite_sym_joker",
       "type": "sprite",
-      "prompt": "Codex-generated sprite for ArcticQuestFishing"
+      "prompt": "One single glossy 3D joker playing card with a thick gold border, centered icon, glossy 3D render, isolated on plain white, no other objects"
+    },
+    {
+      "name": "sprite_card_joker",
+      "type": "sprite",
+      "prompt": "One single ornate gold framed collectible joker card, centered icon, glossy 3D render, isolated on plain white, no other objects"
+    },
+    {
+      "name": "sprite_chest",
+      "type": "sprite",
+      "prompt": "One single glossy 3D crimson and gold treasure chest, closed lid, centered icon, glossy 3D render, isolated on plain white, no other objects"
     }
   ]
 }

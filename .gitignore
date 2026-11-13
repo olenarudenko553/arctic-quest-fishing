@@ -1,72 +1,88 @@
-# Generated React Native project — App Factory .gitignore
+# Source - https://stackoverflow.com/a
+# Posted by bennygenel, modified by community. See post 'Timeline' for change history
+# Retrieved 2025-12-02, License - CC BY-SA 4.0
 
-# ----- JS / RN -----
-node_modules/
-.yarn/cache
-.yarn/install-state.gz
-npm-debug.log
-yarn-error.log
-*.log
-.metro-health-check*
-coverage/
-dist/
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
 build/
-.watchman/
-.pnpm-debug.log
-*.jsbundle
-
-# ----- Android build outputs -----
-android/.gradle/
-android/build/
-android/app/build/
-android/app/release/
-android/captures/
-android/app/debug.keystore
-android/app/release.keystore
-android/app/*.keystore
-*.apk
-*.aab
-*.hprof
-*.jks
-.cxx/
-
-# ----- Android local config (keystore creds, SDK path) -----
-android/local.properties
-android/keystore.properties
-keystore.properties
-android/gradle.properties.local
-
-# ----- iOS -----
-ios/build/
-ios/Pods/
-ios/*.xcworkspace/xcuserdata/
-*.xcuserstate
-Podfile.lock
-**/.xcode.env.local
-xcuserdata
 *.pbxuser
+!default.pbxuser
 *.mode1v3
+!default.mode1v3
 *.mode2v3
+!default.mode2v3
 *.perspectivev3
+!default.perspectivev3
+xcuserdata
 *.xccheckout
 *.moved-aside
 DerivedData
 *.hmap
 *.ipa
+*.xcuserstate
+project.xcworkspace
 
-# ----- Editor / OS -----
-.idea/
-.vscode/
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
 *.iml
-.DS_Store
-Thumbs.db
+.cxx/
+# Protect keystore confidential data
+android/gradle.properties
 
-# ----- App Factory internals (do NOT ship) -----
-prompts/
-assets-failed.log
-assets-gen.log
-emu-boot.log
-artifacts/
-.env.secrets
-android/key.properties
-key.properties
+# node.js
+#
+node_modules/
+package-lock.json # include if you are using npm - don't use both yarn and npm
+npm-debug.log
+yarn-error.log
+yarn.lock # include if you are using yarn - don't use both npm and yarn
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+
+# Fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use Fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+# Bundle artifact
+*.jsbundle
+
+# Release binaries
+*.aab
+*.apk
+*.dex
+
+# Task secrets (Jira token, Firebase client config)
+meta.json
+google-services.json
+
+# Autosetup Claude Code repair handoff (generated per run)
+.claude/autosetup-repair.md
+.claude/skills/
+
+# ---- added by local init ----
+# Signing & secrets (keystore + backups)
+*.keystore
+*.jks
+android/gradle.properties.bak-*
+android/app/keystore.keystore
+.approval-reminder.env
+.last-build-apk.env
+.last-build-aab.env
